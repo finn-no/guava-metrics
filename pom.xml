@@ -18,6 +18,9 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <version.jdk>1.6</version.jdk>
+    <bintray.repo>krokskogstrollet/maven</bintray.repo>
+    <bintray.package>guava-metrics</bintray.package>
+
   </properties>
 
   <dependencies>
@@ -104,6 +107,7 @@
 	<groupId>org.apache.maven.plugins</groupId>
 	<artifactId>maven-gpg-plugin</artifactId>
 	<version>1.5</version>
+	<configuration><useAgent>true</useAgent></configuration>
 	<executions>
           <execution>
             <id>sign-artifacts</id>
@@ -117,6 +121,13 @@
 
     </plugins>
   </build>
-  
+
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-repo-maven-example</id>
+            <url>https://api.bintray.com/maven/${bintray.repo}/${bintray.package}</url>
+        </repository>
+    </distributionManagement>  
   
 </project>
