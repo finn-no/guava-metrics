@@ -12,18 +12,20 @@ import com.google.common.cache.Cache;
 
 /**
  * Created by Henning Spjelkavik on 23.10.2014.
+ *
+ * The idea and most of the code is copied from the blog post, with permission
  * http://antrix.net/posts/2014/codahale-metrics-guava-cache/
+ *
  */
 
 public class GuavaCacheMetrics extends HashMap< String, Metric> implements MetricSet {
 
     /**
      * Wraps the provided Guava cache's statistics into Gauges suitable for reporting via Codahale Metrics
-     * <p/>
      * The returned MetricSet is suitable for registration with a MetricRegistry like so:
-     * <p/>
      * <code>registry.registerAll( GuavaCacheMetrics.metricsFor( "MyCache", cache ) );</code>
      *
+     * @param clzz Classname to prefix the cacheName
      * @param cacheName This will be prefixed to all the reported metrics
      * @param cache The cache from which to report the statistics
      * @return MetricSet suitable for registration with a MetricRegistry
