@@ -4,7 +4,7 @@
 
   <groupId>no.finntech.guava-metrics</groupId>
   <artifactId>guava-metrics</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <description>Report Guava cache statistics to dropwizard/(codahale) metrics</description>
 
