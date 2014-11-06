@@ -1,0 +1,58 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'no.finntech.guava-metrics'
+version = '1.0-SNAPSHOT'
+
+description = """"""
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+	classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.5'
+    }
+}
+apply plugin: 'com.jfrog.bintray'
+
+
+bintray {
+    user = 'krokskogstrollet'
+
+    publications = ['mavenStuff'] //When uploading Maven-based publication files
+    dryRun = false //Whether to run this as dry-run, without deploying
+    publish = true //If version should be auto published after an upload
+    pkg {
+	repo = 'guava-metrics'
+	name = 'mypkg'
+	desc = 'what a fantastic package indeed!'
+	websiteUrl = 'https://github.com/finn-no/guava-metrics'
+	issueTrackerUrl = 'https://github.com/finn-no/guava-metrics/issues'
+	vcsUrl = 'git@github.com:finn-no/guava-metrics.git'
+	licenses = ['Apache-2.0']
+	publicDownloadNumbers = true
+	//Optional version descriptor
+	version {
+	    name = '1.0' //Bintray logical version name
+	    gpg {
+		sign = true //Determines whether to GPG sign the files. The default is false
+	    }
+	}
+    }
+}
+
+
+repositories {
+        
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'io.dropwizard.metrics', name: 'metrics-core', version:'3.1.0'
+    compile group: 'com.google.guava', name: 'guava', version:'18.0'
+    testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version:'2.3.3'
+    testCompile group: 'org.spockframework', name: 'spock-core', version:'0.7-groovy-2.0'
+}
