@@ -8,10 +8,30 @@
   <packaging>jar</packaging>
   <description>Report Guava cache statistics to dropwizard/(codahale) metrics</description>
 
+  <url>https://github.com/finn-no/guava-metrics</url>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>fihespje</id>
+      <name>Henning Spjelkavik</name>
+      <email>henning.spjelkavik@finn.no</email>
+      <organization>FINN.no</organization>
+      <organizationUrl>http://www.finn.no</organizationUrl>
+  </developers>    
+
+
   <scm>
-    <connection>scm:git:https://github.com/finn-no/guava-metrics.git</connection>
+    <connection>scm:git:git@github.com:finn-no/guava-metrics.git</connection>
     <developerConnection>scm:git:git@github.com:finn-no/guava-metrics.git</developerConnection>
-    <url>https://github.com/finn-no/guava-metrics</url>
+    <url>git@github.com:finn-no/guava-metrics.git</url>
     <tag>HEAD</tag>
   </scm>
 
