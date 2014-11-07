@@ -135,7 +135,7 @@
 
     <distributionManagement>
         <repository>
-            <id>bintray-repo-maven-example</id>
+            <id>bintray</id>
             <url>https://api.bintray.com/maven/${bintray.repo}/${bintray.package}</url>
         </repository>
     </distributionManagement>  
