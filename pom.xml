@@ -4,7 +4,7 @@
 
   <groupId>no.finn.guava-metrics</groupId>
   <artifactId>guava-metrics</artifactId>
-  <version>1.1</version>
+  <version>1.2-SNAPSHOT</version>
   <packaging>jar</packaging>
   <description>Report Guava cache statistics to dropwizard/(codahale) metrics</description>
 
@@ -33,7 +33,7 @@
     <connection>scm:git:git@github.com:finn-no/guava-metrics.git</connection>
     <developerConnection>scm:git:git@github.com:finn-no/guava-metrics.git</developerConnection>
     <url>git@github.com:finn-no/guava-metrics.git</url>
-    <tag>guava-metrics-1.1</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <properties>
