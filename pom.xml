@@ -6,6 +6,7 @@
   <artifactId>guava-metrics</artifactId>
   <version>1.2-SNAPSHOT</version>
   <packaging>jar</packaging>
+  <name>guava-metrics reporter</name>
   <description>Report Guava cache statistics to dropwizard/(codahale) metrics</description>
 
   <url>https://github.com/finn-no/guava-metrics</url>
