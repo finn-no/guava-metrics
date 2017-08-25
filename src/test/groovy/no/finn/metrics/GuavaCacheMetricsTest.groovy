@@ -13,6 +13,7 @@ class GuavaCacheMetricsTest extends Specification {
 
         def cache = CacheBuilder.newBuilder().recordStats().build()
         def registry = new MetricRegistry()
+        GuavaCacheMetrics.setMetricNames("efficiency", "hits", "misses", "loadExceptions", "evictions")
         registry.registerAll(GuavaCacheMetrics.metricsFor(GuavaCacheMetricsTest.class, "MyCache", cache))
 
         when: "various read/write operations are performed on the cache"
@@ -37,10 +38,10 @@ class GuavaCacheMetricsTest extends Specification {
 
         def gauges = registry.gauges
 
-        2   == gauges["no.finn.metrics.GuavaCacheMetricsTest.MyCache.hitCount"].value
-        3   == gauges["no.finn.metrics.GuavaCacheMetricsTest.MyCache.missCount"].value
-        0.4 == gauges["no.finn.metrics.GuavaCacheMetricsTest.MyCache.hitRate"].value
-        1   == gauges["no.finn.metrics.GuavaCacheMetricsTest.MyCache.loadExceptionCount"].value
-        0   == gauges["no.finn.metrics.GuavaCacheMetricsTest.MyCache.evictionCount"].value
+        2   == gauges["no.finn.metrics.GuavaCacheMetricsTest.MyCache.hits"].value
+        3   == gauges["no.finn.metrics.GuavaCacheMetricsTest.MyCache.misses"].value
+        0.4 == gauges["no.finn.metrics.GuavaCacheMetricsTest.MyCache.efficiency"].value
+        1   == gauges["no.finn.metrics.GuavaCacheMetricsTest.MyCache.loadExceptions"].value
+        0   == gauges["no.finn.metrics.GuavaCacheMetricsTest.MyCache.evictions"].value
     }
 }

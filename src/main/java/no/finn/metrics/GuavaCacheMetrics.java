@@ -19,6 +19,28 @@ import com.google.common.cache.Cache;
  */
 
 public class GuavaCacheMetrics extends HashMap< String, Metric> implements MetricSet {
+    /** Metric names. */
+    private static String hitRateMetric = "hitRate";
+    private static String hitCountMetric = "hitCount";
+    private static String missCountMetric = "missCount";
+    private static String loadExceptionCountMetric = "loadExceptionCount";
+    private static String evictionCountMetric = "evictionCount";
+
+    /**
+     * Rename metrics. Has global effect.
+     */
+    public static void setMetricNames(String hitRateMetric,
+                                      String hitCountMetric,
+                                      String missCountMetric,
+                                      String loadExceptionCountMetric,
+                                      String evictionCountMetric
+    ) {
+        GuavaCacheMetrics.hitRateMetric = hitRateMetric;
+        GuavaCacheMetrics.hitCountMetric = hitCountMetric;
+        GuavaCacheMetrics.missCountMetric = missCountMetric;
+        GuavaCacheMetrics.loadExceptionCountMetric = loadExceptionCountMetric;
+        GuavaCacheMetrics.evictionCountMetric = evictionCountMetric;
+    }
 
     /**
      * Wraps the provided Guava cache's statistics into Gauges suitable for reporting via Codahale Metrics
@@ -34,35 +56,35 @@ public class GuavaCacheMetrics extends HashMap< String, Metric> implements Metri
 
         GuavaCacheMetrics metrics = new GuavaCacheMetrics();
 
-        metrics.put( name( clzz, cacheName, "hitRate" ), new Gauge< Double >() {
+        metrics.put( name( clzz, cacheName, hitRateMetric), new Gauge< Double >() {
             @Override
             public Double getValue() {
                 return cache.stats().hitRate();
             }
         } );
 
-        metrics.put( name( clzz, cacheName, "hitCount" ), new Gauge< Long >() {
+        metrics.put( name( clzz, cacheName, hitCountMetric), new Gauge< Long >() {
             @Override
             public Long getValue() {
                 return cache.stats().hitCount();
             }
         } );
 
-        metrics.put( name( clzz, cacheName, "missCount" ), new Gauge< Long >() {
+        metrics.put( name( clzz, cacheName, missCountMetric), new Gauge< Long >() {
             @Override
             public Long getValue() {
                 return cache.stats().missCount();
             }
         } );
 
-        metrics.put( name( clzz, cacheName, "loadExceptionCount" ), new Gauge< Long >() {
+        metrics.put( name( clzz, cacheName, loadExceptionCountMetric), new Gauge< Long >() {
             @Override
             public Long getValue() {
                 return cache.stats().loadExceptionCount();
             }
         } );
 
-        metrics.put( name( clzz, cacheName, "evictionCount" ), new Gauge< Long >() {
+        metrics.put( name( clzz, cacheName, evictionCountMetric ), new Gauge< Long >() {
             @Override
             public Long getValue() {
                 return cache.stats().evictionCount();
