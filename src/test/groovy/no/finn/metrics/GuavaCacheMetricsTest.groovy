@@ -13,8 +13,16 @@ class GuavaCacheMetricsTest extends Specification {
 
         def cache = CacheBuilder.newBuilder().recordStats().build()
         def registry = new MetricRegistry()
-        GuavaCacheMetrics.setMetricNames("efficiency", "hits", "misses", "loadExceptions", "evictions")
-        registry.registerAll(GuavaCacheMetrics.metricsFor(GuavaCacheMetricsTest.class, "MyCache", cache))
+        def metrics = GuavaCacheMetrics.newBuilder(cache)
+            .withHitCountName("hits")
+            .withMissCountName("misses")
+            .withHitRateName("efficiency")
+            .withEvictionCountName("evictions")
+            .withLoadExceptionCountName("loadExceptions")
+            .withCacheName("MyCache")
+            .forClass(GuavaCacheMetricsTest.class)
+            .build()
+        registry.registerAll(metrics)
 
         when: "various read/write operations are performed on the cache"
 
