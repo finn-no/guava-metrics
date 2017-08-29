@@ -70,7 +70,7 @@ public class GuavaCacheMetrics extends HashMap< String, Metric> implements Metri
         }
 
         public GuavaCacheMetrics build() {
-            GuavaCacheMetrics metrics = new GuavaCacheMetrics();
+            GuavaCacheMetrics metrics = GuavaCacheMetrics.this;
 
             metrics.put( name( clzz, cacheName, hitRateMetric), new Gauge< Double >() {
                 @Override
@@ -119,7 +119,10 @@ public class GuavaCacheMetrics extends HashMap< String, Metric> implements Metri
     /**
      * Create new Builder.
      */
-    public static Builder newBuilder(final Cache cache) { return (new GuavaCacheMetrics()).new Builder(cache); }
+    public static Builder newBuilder(final Cache cache) {
+        GuavaCacheMetrics metrics = new GuavaCacheMetrics();
+        return metrics.new Builder(cache);
+    }
 
     /**
      * Wraps the provided Guava cache's statistics into Gauges suitable for reporting via Codahale Metrics
