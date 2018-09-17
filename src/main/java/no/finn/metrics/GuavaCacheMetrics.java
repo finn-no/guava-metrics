@@ -69,6 +69,13 @@ public class GuavaCacheMetrics extends HashMap< String, Metric> implements Metri
             }
         } );
 
+        metrics.put( name( clzz, cacheName, "size" ), new Gauge< Long >() {
+            @Override
+            public Long getValue() {
+                return cache.size();
+            }
+        } );
+
         return metrics;
     }
 
